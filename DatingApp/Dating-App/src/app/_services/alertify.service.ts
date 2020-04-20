@@ -20,7 +20,7 @@ success(message: string) {
   alertify.success(message);
 }
 
-error(message: string) { 
+error(message: string) {
   alertify.error(message);
 }
 
