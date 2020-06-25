@@ -1,8 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container" >
     <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>  
-
-  
+    <button
+    class="navbar-toggler"
+    type="button"
+    (click)="collapse.toggle()"
+    aria-controls="main-nav"
+    aria-expanded="false"
+    aria-label="Navigáció kapcsoló"
+  >
+    <span class="navbar-toggler-icon d-flex align-items-center justify-content-center">
+    </span>
+  </button>
+    <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse" >
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/members']">Matches</a>
@@ -14,10 +24,11 @@
         <a class="nav-link" [routerLink]="['/messages']" >Messages</a>
       </li>         
     </ul>
+    </ngx-navbar-collapse>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <span class="mr-1">
-        <img src="{{photoUrl}}" alt=""/>
+        <img src="{{photoUrl || '../../../../../assets/user.png'}}" alt="">
       </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
@@ -35,6 +46,5 @@
       <input class="form-control mr-sm-2" required [ngModel] type="password" name="password" placeholder="Password" [(ngModel)]="model.password">
       <button [disabled] = "!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form> 
-  </div>
-  
+  </div>  
 </nav>

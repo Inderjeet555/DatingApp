@@ -4,6 +4,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/User';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery-9';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class MemberDetailComponent implements OnInit {
     galleryImages: NgxGalleryImage[];
 
   constructor(private userService: UserService, private alertify: AlertifyService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -49,6 +50,10 @@ export class MemberDetailComponent implements OnInit {
         });
     }
     return imgUrls;
+  }
+
+  loggedIn() {
+    return this.authService.loggedIn();
   }
 
     // loadUser() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
@@ -7,16 +7,17 @@ import { Router } from '@angular/router';
   // tslint:disable-next-line: component-selector
   selector: 'app-navComponent',
   templateUrl: './navComponent.component.html',
-  styleUrls: ['./navComponent.component.css']
+  styleUrls: ['./navComponent.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavComponentComponent implements OnInit {
-  model: any =  {};
   photoUrl: string;
+  model: any =  {};
 
   constructor(public authService: AuthService, private alertify: AlertifyService,
               private router: Router ) { }
 
-  ngOnInit() {
+   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 

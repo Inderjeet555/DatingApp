@@ -25,11 +25,11 @@ export class MembersEditComponent implements OnInit {
                  private authService: AuthService) { }
 
   ngOnInit() {
-    this.router.data.subscribe(data => {
+  this.router.data.subscribe(data => {
         // tslint:disable-next-line: no-string-literal
         this.user = data['user'];
     });
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+  this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
