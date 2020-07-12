@@ -35,21 +35,12 @@
 
 
   <div class="form-group">    
-    <ng-select
-    bindLabel="name" 
-    placeholder="Select City" 
-    formControlName="city"  
-    [ngClass]="{ 'is-invalid': registerForm.get('city').invalid && registerForm.get('city').touched }"  
-    >
-    <ng-option *ngFor="let cities of data" [value]="cities">
-      {{cities.name}}
-  </ng-option>
-    <!-- <ng-option *ngFor="let cities of data" [value]="cities">
-      {{cities.name}}
-  </ng-option>       -->
-    </ng-select>
+    <select [ngClass]="{'is-invalid': registerForm.get('city').errors && registerForm.get('city').touched}" name="" class="form-control" formControlName="city" id="city">
+      <option value="" disabled selected hidden>Select City</option>
+      <option value="{{con}}" *ngFor='let con of data'>{{con}}</option>
+    </select>
     <div *ngIf="registerForm.get('city').invalid && registerForm.get('city').touched" class="invalid-feedback">
-      <div *ngIf="!!registerForm.get('city').hasError('required')">Supplier is required</div>
+      <div *ngIf="!!registerForm.get('city').hasError('required')">City is required</div>
   </div>
   </div>
 
