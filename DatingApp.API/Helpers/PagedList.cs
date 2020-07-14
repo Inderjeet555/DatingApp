@@ -28,7 +28,5 @@ namespace DatingApp.API.Helpers
             var items = await source.Skip((pageNumber - 1) * pazeSize).Take(pazeSize).ToListAsync();
                 return new PagedList<T>(items, count, pageNumber, pazeSize);
         }
-
-
     }
 }

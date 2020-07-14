@@ -34,6 +34,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TimeagoModule } from 'ngx-timeago';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 export function tokenGetter() {
@@ -77,6 +78,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BsDatepickerModule.forRoot(),
       NgxNavbarModule,
       NgSelectModule,
+      PaginationModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
       JwtModule.forRoot({
