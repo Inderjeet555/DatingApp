@@ -117,9 +117,17 @@ namespace DatingApp.API.Data
             return await _context.Messages.FirstOrDefaultAsync(u => u.Id == id);
         }      
 
-        public Task<Message> GetMessageThread(int userId, int recipientId)
+        public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
         {
-            throw new NotImplementedException();
+           var messages = await  _context.Messages
+            .Include(u => u.Sender).ThenInclude(p => p.Photos)
+            .Include(u => u.Recipient).ThenInclude(p => p.Photos)
+            .Where(x => x.RecipientId == userId && x.SenderId == recipientId
+            || x.RecipientId == recipientId && x.SenderId == userId)
+            .OrderByDescending(p => p.MeassgeSent)
+            .ToListAsync();
+
+              return messages;
         }
 
         public async Task<PagedList<Message>> GetMessagesForUsers(MessageParams messageParams)
@@ -141,7 +149,7 @@ namespace DatingApp.API.Data
                 break;
 
                 default:
-                 messages = messages.Where(x => x.SenderId ==  messageParams.UserId && x.IsRead == false);  
+                 messages = messages.Where(x => x.RecipientId ==  messageParams.UserId && x.IsRead == false);  
                  break;
             }
 

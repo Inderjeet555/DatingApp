@@ -1,3 +1,4 @@
+import { Message } from './../_models/Message';
 import { map } from 'rxjs/operators';
 import { PaginationResult } from './../_models/Pagination';
 import { Injectable } from '@angular/core';
@@ -73,6 +74,29 @@ deletePhoto(userid: number, id: number) {
 
 sendLike(id: number, recipientId) {
   return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {});
+}
+
+getMessages(id: number, page? , itemsPerPage?, messageContainer?) {
+    const paginatedResult: PaginationResult<Message[]> = new PaginationResult();
+
+    let params = new HttpParams();
+
+    params = params.append('MessageContainer', messageContainer);
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages', {observe: 'response', params})
+      .pipe(map(response => {
+        paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return paginatedResult;
+
+      }));
 }
 
 }
