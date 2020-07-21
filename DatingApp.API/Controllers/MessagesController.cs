@@ -87,11 +87,11 @@ namespace DatingApp.API.Controllers
 
                 _repository.Add(message);
 
-               // var messageToReturn = _mapper.Map<UserForMessageDto>(message);
+                var messageToReturn = _mapper.Map<UserForMessageDto>(message);
 
                 if (await _repository.SaveAll()) 
                 {
-                    var messageToReturn = _mapper.Map<UserForMessageDto>(message);
+                    messageToReturn = _mapper.Map<UserForMessageDto>(message);
                     return CreatedAtRoute("GetMessage", new {userId, id = message.Id}, messageToReturn);
                 }
                     

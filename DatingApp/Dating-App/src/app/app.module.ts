@@ -1,3 +1,4 @@
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MessageResolver } from './_resolvers/messages.resolver';
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -64,7 +65,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberCardsComponent,
       MemberDetailComponent,
       MembersEditComponent,
-      PhotoEditComponent
+      PhotoEditComponent,
+      MemberMessagesComponent
       ],
    imports: [
       BrowserModule,

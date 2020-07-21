@@ -114,7 +114,7 @@ namespace DatingApp.API.Data
 
         public async Task<Message> GetMessage(int id)
         {
-            return await _context.Messages.FirstOrDefaultAsync(u => u.Id == id);
+            return await _context.Messages.Include(x => x.Sender).ThenInclude(u => u.Photos).FirstOrDefaultAsync(u => u.Id == id);
         }      
 
         public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)

@@ -25,11 +25,11 @@ export class MessagesComponent implements OnInit {
       this.messages = data['messages'].result;
       // tslint:disable-next-line: no-string-literal
       this.pagination = data['messages'].pagination;
-    })
+    });
   }
 
   loadMessages() {
-    this.userService.getMessages(this.authService.decodedToken.nameid, this.pagination.currentPage, 
+    this.userService.getMessages(this.authService.decodedToken.nameid, this.pagination.currentPage,
       this.pagination.itemsPerPage, this.messageContainer).subscribe((res: PaginationResult<Message[]>) => {
         this.messages = res.result;
         this.pagination = res.pagination;
