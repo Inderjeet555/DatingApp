@@ -2,8 +2,8 @@ using System;
 
 namespace DatingApp.API.Dtos
 {
-    public class UserForMessageDto
-    {       
+    public class UserForMessageReturnDto
+    {
         public int SenderId { get; set; }    
         public string SenderPhotoUrl { get; set; }     
         public int RecipientId { get; set; }        
@@ -11,9 +11,10 @@ namespace DatingApp.API.Dtos
         public DateTime MeassgeSent { get; set; }             
         public string SenderKnownAs { get; set; }
                
-        public UserForMessageDto()
+        public UserForMessageReturnDto()
         {
             MeassgeSent = DateTime.Now;
         }
+
     }
 }
